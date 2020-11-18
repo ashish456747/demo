@@ -8,10 +8,10 @@ node{
     sh "${mvnHome}/bin/mvn package"
   }
   stage('SonarQube Analysis'){
-    def mvnHome=tool name:'maven', type:'maven',
-      withSonarQubeEnv('sonar-6'){
-        sh "${mvnHome}/bin/mvn sonar:sonar"
-      }
+    def mvnHome=tool name:'maven', type:'maven'
+    withSonarQubeEnv('sonar-6'){
+      sh "${mvnHome}/bin/mvn sonar:sonar"
+    }
   }
   stage('Email Notification'){
     mail bcc: '', body: 'test', cc: '', from: '', replyTo: '', subject: 'pipeline02 email notification', to: 'ashish.v.kumar7@gmail.com'  
