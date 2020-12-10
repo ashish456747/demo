@@ -5,7 +5,7 @@ node{
   stage('Compile Package'){
     //Get maven home path
     def mvnHome=tool name: 'maven', type: 'maven'
-    sh "${mvnHome}/bin/mvn package"
+    sh "${mvnHome}/bin/mvn clean package"
   }
   stage('Upload Artifact to nexus'){
     nexusArtifactUploader artifacts: [[artifactId: 'myweb', classifier: '', file: 'target/myweb-1.0.0.war', type: 'war']], credentialsId: 'nexus3', groupId: 'in.javahome', nexusUrl: '192.168.1.14', nexusVersion: 'nexus3', protocol: 'http', repository: 'http://192.168.1.14:8081/repository/simpleapp-release/', version: '1.0.0'
