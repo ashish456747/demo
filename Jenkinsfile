@@ -7,6 +7,9 @@ node{
     def mvnHome=tool name: 'maven', type: 'maven'
     sh "${mvnHome}/bin/mvn package"
   }
+  stage('Upload Artifact to nexus'){
+    nexusArtifactUploader artifacts: [[artifactId: 'myweb', classifier: '', file: 'target/my-app-1.0.0.war', type: 'war']], credentialsId: 'nexus3', groupId: 'in.javahome', nexusUrl: '192.168.1.14', nexusVersion: 'nexus3', protocol: 'http', repository: 'http://192.168.1.14:8081/repository/simpleapp-release/', version: '1.0.0'
+  }
   stage('SonarQube Analysis'){
     def mvnHome=tool name:'maven', type:'maven'
     withSonarQubeEnv('sonar-6'){
