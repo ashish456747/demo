@@ -31,4 +31,9 @@ node{
   stage('Slack Notification'){
     slackSend baseUrl: 'https://hooks.slack.com/services/', channel: '#test', color: 'good', message: 'Welcome to Jenkins!', teamDomain: 'AppDev', tokenCredentialId: 'slack-demo'
   }
+  stage('Deploy to tomcat'){
+    sshagent(['bbd37a6b-7e5b-4e9f-8bdd-7225f5dffdab']) {
+      sh 'scp -o StrictHostKeyChecking=no target/*.war jenkins@192.168.1.14:/usr/share/tomcat/webapps'
+    }
+ }
 }
