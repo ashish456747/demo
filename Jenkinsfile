@@ -33,7 +33,7 @@ node{
   }
   stage('Deploy to tomcat'){
     sshagent(['bbd37a6b-7e5b-4e9f-8bdd-7225f5dffdab']) {
-      sh 'sudo scp -o StrictHostKeyChecking=no target/*.war jenkins@192.168.1.14:/usr/share/tomcat/webapps'
+      sh 'scp -o StrictHostKeyChecking=no target/*.war jenkins@192.168.1.14:/usr/share/tomcat/webapps'
     }
  }
 }
