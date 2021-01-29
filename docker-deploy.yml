@@ -8,8 +8,8 @@
         pip: name=docker-py state=present
       - name: Start the container
         docker_container: 
-          name:app 
-          image:"ashish.v.kumar/app:${DOCKER_TAG}" 
-          state:started 
+          name: app 
+          image: "ashish.v.kumar/app:${DOCKER_TAG}" 
+          state: started 
           published_ports:
             - 0.0.0.0:9080:8080          
